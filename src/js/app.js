@@ -3,34 +3,33 @@ const NUM_ROWS = 4;
 const NUM_COLS = 4;
 
 export function createBoardGame() {
-  const gameBoard = document.getElementById("game-board");
+  const gameBoard = document.getElementById('game-board');
 
   for (let row = 0; row < NUM_ROWS; row += 1) {
     for (let col = 0; col < NUM_COLS; col += 1) {
-      const cell = document.createElement("div");
-      cell.className = "game-cell";
+      const cell = document.createElement('div');
+      cell.className = 'game-cell';
       gameBoard.appendChild(cell);
     }
   }
 }
 
 export function moveGnome() {
-  const gameCells = Array.from(document.querySelectorAll(".game-cell"));
-  const gnome = document.getElementById("gnome");
+  const gameCells = Array.from(document.querySelectorAll('.game-cell'));
+  const gnome = document.getElementById('gnome');
 
   const availableCells = gameCells.filter(
-    (cell) => cell !== gnome.parentElement
+    (cell) => cell !== gnome.parentElement,
   );
-  const randomCell =
-    availableCells[Math.floor(Math.random() * availableCells.length)];
+  const randomCell = availableCells[Math.floor(Math.random() * availableCells.length)];
   randomCell.appendChild(gnome);
 }
 
 function startGame() {
-  const gnome = document.createElement("img");
-  gnome.id = "gnome";
-  gnome.className = "gnome";
-  gnome.src = "goblin.png";
+  const gnome = document.createElement('img');
+  gnome.id = 'gnome';
+  gnome.className = 'gnome';
+  gnome.src = 'goblin.png';
 
   createBoardGame();
   moveGnome();
@@ -38,4 +37,4 @@ function startGame() {
   setInterval(moveGnome, 1000);
 }
 
-window.addEventListener("DOMContentLoaded", startGame);
+window.addEventListener('DOMContentLoaded', startGame);
