@@ -2,7 +2,7 @@
 const NUM_ROWS = 4;
 const NUM_COLS = 4;
 
-function createBoardGame() {
+export function createBoardGame() {
   const gameBoard = document.getElementById("game-board");
 
   for (let row = 0; row < NUM_ROWS; row += 1) {
@@ -14,7 +14,7 @@ function createBoardGame() {
   }
 }
 
-function moveGnome() {
+export function moveGnome() {
   const gameCells = Array.from(document.querySelectorAll(".game-cell"));
   const gnome = document.getElementById("gnome");
 
