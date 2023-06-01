@@ -1,0 +1,1 @@
+![CI](https://github.com/ElenaKars/Whack-a-Gnome/actions/workflows/web.yml/badge.svg)
