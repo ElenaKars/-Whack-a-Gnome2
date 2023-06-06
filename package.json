@@ -21,7 +21,6 @@
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.2",
-    "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jest": "^27.1.5",
@@ -40,6 +39,7 @@
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "webpack": "^5.75.0",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^5.8.0",
+    "css-minimizer-webpack-plugin": "^5.0.0"
   }
 }
