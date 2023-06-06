@@ -1,37 +1,26 @@
-import { createBoardGame, moveGnome } from '../app';
+import Game from '../app';
 
-describe('App', () => {
-  // Описываем тест для функции createBoardGame
-  describe('createBoardGame', () => {
-    it('should create game cells', () => {
-      document.body.innerHTML = '<div id="game-board"></div>';
+describe('Game', () => {
+  let game;
 
-      createBoardGame();
-
-      // Проверяем, что ячейки были созданы и добавлены в DOM
-      expect(document.querySelectorAll('.game-cell').length).toBe(16);
-    });
+  beforeEach(() => {
+    document.body.innerHTML = `
+    <div class="container">
+    <div class="header">
+      <button id="start-button">Start Game</button>
+    </div>
+    <div id="game-board" class="game-board"></div>
+    </div>
+      `;
+    game = new Game();
   });
 
-  describe('moveGnome', () => {
-    it('should move gnome to a random cell', () => {
-      // Создаем тестовый DOM-элемент, на котором будем выполнять перемещение гнома
-      document.body.innerHTML = `
-        <div id="game-board">
-          <div class="game-cell"></div>
-          <div class="game-cell"></div>
-          <div class="game-cell">
-            <img id="gnome">
-          </div>
-          <div class="game-cell"></div>
-        </div>
-      `;
+  test('create an instance of Game', () => {
+    expect(game).toBeInstanceOf(Game);
+  });
 
-      moveGnome();
-
-      // Проверяем, что гном был перемещен в случайную ячейку
-      const gnomeParentElement = document.getElementById('gnome').parentElement;
-      expect(gnomeParentElement.classList.contains('game-cell')).toBe(true);
-    });
+  test('createBoardGame method', () => {
+    const gameCells = Array.from(document.querySelectorAll('.game-cell'));
+    expect(gameCells.length).toBe(16);
   });
 });
