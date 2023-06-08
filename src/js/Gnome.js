@@ -10,6 +10,10 @@ export default class Gnome {
   }
 
   add(fieldArr) {
+    if (this.idSetInterval) {
+      clearInterval(this.idSetInterval); // Очистка предыдущего интервала
+    }
+
     this.idSetInterval = setInterval(() => {
       const currentCell = fieldArr.find((item) => item.querySelector('img'));
       if (currentCell) {

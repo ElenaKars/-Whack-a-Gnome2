@@ -13,6 +13,8 @@ describe('Game', () => {
     </div>
       `;
     game = new Game();
+    game.createBoardGame();
+    game.start();
   });
 
   test('create an instance of Game', () => {
@@ -20,7 +22,6 @@ describe('Game', () => {
   });
 
   test('createBoardGame method', () => {
-    const gameCells = Array.from(document.querySelectorAll('.game-cell'));
-    expect(gameCells.length).toBe(16);
+    expect(game.fieldArr.length).toBe(16);
   });
 });
