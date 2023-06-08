@@ -9,10 +9,10 @@ export default class Gnome {
     this.idSetInterval = null;
   }
 
-  add(fieldArr){
+  add(fieldArr) {
     this.idSetInterval = setInterval(() => {
-      const currentCell = fieldArr.find((item) => item.querySelector("img"));
-      if(currentCell){
+      const currentCell = fieldArr.find((item) => item.querySelector('img'));
+      if (currentCell) {
         this.remove(currentCell);
       }
       fieldArr[Math.floor(Math.random() * fieldArr.length)].append(this.gnomeElement);
@@ -20,10 +20,10 @@ export default class Gnome {
   }
 
   remove(cell) {
-    cell.querySelector("gnome").remove()
+    cell.querySelector('img').remove(this);
   }
 
   stop() {
-    clearInterval(this.idSetInterval)
+    clearInterval(this.idSetInterval);
   }
 }
