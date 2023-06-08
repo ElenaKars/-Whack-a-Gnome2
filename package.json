@@ -31,15 +31,15 @@
     "live-server": "^1.2.2",
     "prettier": "2.7.1",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
+    "css-minimizer-webpack-plugin": "^5.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "jsdom": "^22.1.0",
     "html-webpack-plugin": "^5.5.0",
+    "jsdom": "^22.1.0",
     "mini-css-extract-plugin": "^2.6.1",
     "webpack": "^5.75.0",
-    "webpack-merge": "^5.8.0",
-    "css-minimizer-webpack-plugin": "^5.0.0"
+    "webpack-merge": "^5.8.0"
   }
 }

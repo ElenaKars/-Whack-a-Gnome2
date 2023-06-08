@@ -1,4 +1,4 @@
-import Game from '../app';
+import Game from '../Game';
 
 describe('Game', () => {
   let game;
