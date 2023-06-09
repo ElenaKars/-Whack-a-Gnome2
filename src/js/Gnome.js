@@ -7,20 +7,24 @@ export default class Gnome {
     this.gnomeElement.alt = 'Gnome';
     this.gnomeElement.src = goblinImage;
     this.idSetInterval = null;
+    this.onGnomeClick = null;
   }
-
-  add(fieldArr) {
-    if (this.idSetInterval) {
-      clearInterval(this.idSetInterval); // Очистка предыдущего интервала
-    }
-
+  
+  add(fieldArr, onGnomeClick) {
+    this.onGnomeClick = onGnomeClick;
     this.idSetInterval = setInterval(() => {
       const currentCell = fieldArr.find((item) => item.querySelector('img'));
+      
+      if (typeof onMissedHit === 'function') {
+        onMissedHit();
+      }
+      
       if (currentCell) {
         this.remove(currentCell);
       }
       fieldArr[Math.floor(Math.random() * fieldArr.length)].append(this.gnomeElement);
     }, 1000);
+    this.gnomeElement.addEventListener('click', onGnomeClick);
   }
 
   remove(cell) {
@@ -29,5 +33,6 @@ export default class Gnome {
 
   stop() {
     clearInterval(this.idSetInterval);
+    this.gnomeElement.removeEventListener('click', this.onGnomeClick);
   }
 }
