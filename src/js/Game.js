@@ -8,7 +8,7 @@ export default class Game {
     this.startBtn = document.getElementById('start-button');
     this.scoreBoard = document.getElementById('score-board');
     this.missedHitsBoard = document.getElementById('missed-hits-board');
-    this.gnome = new Gnome();
+    this.gnome = new Gnome(this.onGnomeClick.bind(this), this.onMissedHit.bind(this));
     this.score = 0;
     this.missedHits = 0;
   }
@@ -20,50 +20,61 @@ export default class Game {
       this.gameBoard.appendChild(cell);
       this.fieldArr.push(cell);
     }
-    document.addEventListener('mousemove', (e) => {
-      const hammerCursor = document.getElementById('hammer-cursor');
-      hammerCursor.style.top = e.clientY + 'px';
-      hammerCursor.style.left = e.clientX + 'px';
-    });    
+
     this.startBtn.addEventListener('click', this.start.bind(this));
   }
 
   start() {
+    if (this.startBtn) {
+      this.startBtn.disabled = true;
+    }
     this.score = 0;
     this.missedHits = 0;
     this.updateScoreBoard();
     this.updateMissedHitsBoard();
 
-    const onMissedHit = () => {
-      this.missedHits++;
-      this.updateMissedHitsBoard();
-      if (this.missedHits >= 5) {
-        this.endGame();
-      }
-    };
-    
-    const onGnomeClick = (e) => {
-      this.score += 1;
-      this.updateScoreBoard();
-      this.gnome.remove(e.currentTarget.parentNode);
-    };
-    this.gnome.add(this.fieldArr, onMissedHit.bind(this));
+    this.gnome.add(this.fieldArr);
 
     setTimeout(() => {
       this.endGame();
-    }, 5000);
-
-    this.startBtn.disabled = true;
-
-    document.getElementById('hammer-cursor').style.display = 'block';
+    }, 10000);
   }
 
-  endGame(onGnomeClick) {
+  endGame() {
+    this.scoreBoard.textContent = 0;
+    this.missedHitsBoard.textContent = 0;
+    const currentCell = this.fieldArr.find((item) => item.querySelector('img'));
+    this.gnome.remove(currentCell);
     this.gnome.stop();
-    document.getElementById('hammer-cursor').style.display = 'none';
-    this.startBtn.disabled = false;
+    // if (this.score === 5) {
+    //   alert('You won!');
+    // } else if (this.missedHits >= 5) {
+    //   alert('Game over!');
+    // }
+
+    // const playAgain = confirm('Do you want to play again?');
+
+    // if (playAgain) {
+    //   location.reload();
+    // } else {
+    //   location.reload();
+    // }
+  }
+
+  onGnomeClick() {
+    this.score += 1;
+    this.updateScoreBoard();
+    if (this.score >= 5) {
+      this.endGame();
+    }
+  }
+
+  onMissedHit() {
+    this.missedHits += 1;
     this.updateMissedHitsBoard();
-    this.gnome.gnomeElement.removeEventListener('click', this.gnome.onGnomeClick);
+    if (this.missedHits >= 5) {
+      this.endGame();
+    }
   }
 
   updateScoreBoard() {
@@ -71,6 +82,6 @@ export default class Game {
   }
 
   updateMissedHitsBoard() {
-    this.gnome.add(this.fieldArr, this.updateMissedHitsBoard.bind(this));
+    this.missedHitsBoard.textContent = `Missed Hits: ${this.missedHits}`;
   }
 }
