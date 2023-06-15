@@ -35,22 +35,28 @@ export default class Game {
 
     this.gnome.add(this.fieldArr);
 
-    setTimeout(() => {
-      this.endGame();
-    }, 10000);
+    // setTimeout(() => {
+    //   this.endGame();
+    // }, 10000);
   }
 
   endGame() {
-    this.scoreBoard.textContent = 0;
-    this.missedHitsBoard.textContent = 0;
+    this.score = 0;
+    this.missedHits = 0;
     const currentCell = this.fieldArr.find((item) => item.querySelector('img'));
     this.gnome.remove(currentCell);
     this.gnome.stop();
-    // if (this.score === 5) {
-    //   alert('You won!');
-    // } else if (this.missedHits >= 5) {
-    //   alert('Game over!');
-    // }
+    if (this.score === 5) {
+      // eslint-disable-next-line no-alert
+      alert('You won!');
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    } else if (this.missedHits >= 5) {
+      // eslint-disable-next-line no-alert
+      alert('Game over!');
+      // eslint-disable-next-line no-restricted-globals
+      location.reload();
+    }
 
     // const playAgain = confirm('Do you want to play again?');
 
