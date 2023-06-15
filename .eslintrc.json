@@ -10,6 +10,10 @@
       "error",
       "LabeledStatement",
       "WithStatement"
+    ],
+    "class-methods-use-this": [
+      "error",
+      { "exceptMethods": ["remove"] }
     ]
   }
 }
